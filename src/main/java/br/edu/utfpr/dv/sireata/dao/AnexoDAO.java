@@ -10,8 +10,9 @@ import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.Anexo;
 
-public class AnexoDAO {
-	
+public class AnexoDAO extends DAO<Anexo> {
+
+	public AnexoDAO() {}
 	public Anexo buscarPorId(int id) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -114,7 +115,7 @@ public class AnexoDAO {
 				conn.close();
 		}
 	}
-	
+
 	public void excluir(int id) throws SQLException{
 		Connection conn = null;
 		Statement stmt = null;
@@ -132,7 +133,8 @@ public class AnexoDAO {
 		}
 	}
 	
-	private Anexo carregarObjeto(ResultSet rs) throws SQLException{
+	@Override
+	public Anexo carregarObjeto(ResultSet rs) throws SQLException{
 		Anexo anexo = new Anexo();
 		
 		anexo.setIdAnexo(rs.getInt("idAnexo"));
